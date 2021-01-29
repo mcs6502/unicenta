@@ -19,7 +19,8 @@
 
 package com.openbravo.pos.sales.simple;
 
-import com.openbravo.pos.forms.*; 
+import com.openbravo.beans.JNumberPop;
+import com.openbravo.pos.forms.*;
 import javax.swing.*;
 import com.openbravo.pos.sales.*;
 import com.openbravo.pos.ticket.TicketInfo;
@@ -121,15 +122,37 @@ public class JTicketsBagSimple extends JTicketsBag {
     }// </editor-fold>//GEN-END:initComponents
 
     private void m_jDelTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jDelTicketActionPerformed
-        
-        int res = JOptionPane.showConfirmDialog(this, 
-                AppLocal.getIntString("message.wannadelete"), 
-                AppLocal.getIntString("title.editor"), 
-                JOptionPane.YES_NO_OPTION, 
-                JOptionPane.QUESTION_MESSAGE);
-        
-        if (res == JOptionPane.YES_OPTION) {
-            deleteTicket();
+        boolean pinOK = false;
+
+        if (m_App.getProperties().getProperty("override.check").equals("true")) {
+            Integer secret = Integer.parseInt(m_App.getProperties().getProperty("override.pin"));
+            Integer iValue = JNumberPop.showEditNumber(this, AppLocal.getIntString("title.override.enterpin"));
+
+            if (iValue == null ? secret == null : iValue.equals(secret)) {
+                pinOK = true;
+                int res = JOptionPane.showConfirmDialog(this
+                        , AppLocal.getIntString("message.wannadelete")
+                        , AppLocal.getIntString("title.editor")
+                        , JOptionPane.YES_NO_OPTION
+                        , JOptionPane.QUESTION_MESSAGE);
+
+                if (res == JOptionPane.YES_OPTION) {
+                    deleteTicket();
+                }
+            } else {
+                pinOK = false;
+                JOptionPane.showMessageDialog(this, AppLocal.getIntString("message.override.badpin"));
+            }
+        } else {
+            int res = JOptionPane.showConfirmDialog(this
+                    , AppLocal.getIntString("message.wannadelete")
+                    , AppLocal.getIntString("title.editor")
+                    , JOptionPane.YES_NO_OPTION
+                    , JOptionPane.QUESTION_MESSAGE);
+
+            if (res == JOptionPane.YES_OPTION) {
+                deleteTicket();
+            }
         }
         
     }//GEN-LAST:event_m_jDelTicketActionPerformed

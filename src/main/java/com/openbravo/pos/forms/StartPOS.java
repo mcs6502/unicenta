@@ -81,19 +81,24 @@ public class StartPOS {
 
       // Set the look and feel.
       try {
+        String lafname = config.getProperty("swing.defaultlaf");
 
-        Object laf = Class.forName(config.getProperty("swing.defaultlaf")).newInstance();
+        Object laf = Class.forName(lafname).newInstance();
         if (laf instanceof LookAndFeel) {
           UIManager.setLookAndFeel((LookAndFeel) laf);
         } else if (laf instanceof SubstanceSkin) {
-          SubstanceLookAndFeel.setSkin((SubstanceSkin) laf);
+          // Ultimate hack ;)
+          String substanceClassName = "Substance"+lafname.split("skin.")[1].split("Skin")[0]+"LookAndFeel";
+          String substancePackageName = "org.pushingpixels.substance.api.skin.";
+          String substanceLookAndFeel = substancePackageName+substanceClassName;
+          LookAndFeel lookAndFeel = (LookAndFeel) Class.forName(substanceLookAndFeel).newInstance();
+          UIManager.setLookAndFeel(lookAndFeel);
+          //SubstanceLookAndFeel.setSkin((SubstanceSkin) laf);
         }
-// JG 6 May 2013 to multicatch
       } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
         log.error("Cannot set Look and Feel", e.getMessage());
       }
 
-// JG July 2014 Hostname for Tickets
       String hostname = config.getProperty("machine.hostname");
       TicketInfo.setHostname(hostname);
 

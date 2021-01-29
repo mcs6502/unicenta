@@ -153,7 +153,7 @@ public final class VoucherEditor extends javax.swing.JPanel implements EditorRec
         } else switch (m_jStatus.getText()) {
             case "A":
                 jLblStatus.setIcon(new javax.swing.ImageIcon(getClass()
-                    .getResource("/com/openbravo/images/OK.png")));
+                    .getResource("/com/openbravo/images/ok.png")));
                 m_jNumber.setEnabled(true);
                 m_jAmount.setEnabled(true);
                 m_jCustomer.setEnabled(true);                

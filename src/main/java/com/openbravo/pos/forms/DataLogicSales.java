@@ -1841,11 +1841,11 @@ public class DataLogicSales extends BeanFactoryDataSingle {
                 }
 
                 // update customer debts
-                for (PaymentInfo p : ticket.getPayments()) {
-                    if ("debt".equals(p.getName()) || "debtpaid".equals(p.getName())) {
+                for (PaymentInfo paymentInfo : ticket.getPayments()) {
+                    if ("debt".equals(paymentInfo.getName()) || "debtpaid".equals(paymentInfo.getName())) {
 
-                        // udate customer fields...
-                        ticket.getCustomer().updateCurDebt(-p.getTotal(), ticket.getDate());
+                        // update customer fields...
+                        ticket.getCustomer().updateCurDebt(-paymentInfo.getTotal(), ticket.getDate());
 
                         // save customer fields...
                         getDebtUpdate().exec(new DataParams() {

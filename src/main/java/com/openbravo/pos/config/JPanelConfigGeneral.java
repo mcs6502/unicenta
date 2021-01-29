@@ -197,10 +197,16 @@ public class JPanelConfigGeneral extends javax.swing.JPanel implements PanelConf
           if (laf1 instanceof LookAndFeel) {
             UIManager.setLookAndFeel((LookAndFeel) laf1);
           } else if (laf1 instanceof SubstanceSkin) {
-            SubstanceLookAndFeel.setSkin((SubstanceSkin) laf1);
+            // Ultimate hack ;)
+            String substanceClassName = "Substance"+lafname.split("skin.")[1].split("Skin")[0]+"LookAndFeel";
+            String substancePackageName = "org.pushingpixels.substance.api.skin.";
+            String substanceLookAndFeel = substancePackageName+substanceClassName;
+            LookAndFeel lookAndFeel = (LookAndFeel) Class.forName(substanceLookAndFeel).newInstance();
+            UIManager.setLookAndFeel(lookAndFeel);
           }
           SwingUtilities.updateComponentTreeUI(JPanelConfigGeneral.this.getTopLevelAncestor());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+          log.error("There has been an issue changing the look and feel: "+e);
         }
       });
     }

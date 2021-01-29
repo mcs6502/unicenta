@@ -107,6 +107,7 @@
 	<event key="cash.close" code="Cash.Close"/>
 
 <!-- Execute your own scripts by EVENTS triggered by Sales Screen -->
+	<!--    <event key="ticket.change" code="script.multibuy"/> Discount 2 different products -->
     <!--    <event key="ticket.change" code="script.YourChangeScript"/> after a ticketline is changed -->
     <!--    <event key="ticket.addline" code="script.YourAddLineScript"/> before a ticketline is added -->
     <!--    <event key="ticket.setline" code="script.YourSetLineScript"/> before an exisitng ticketline is changed -->
