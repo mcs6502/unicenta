@@ -49,6 +49,7 @@
     <class name="refund.cheque"/>
     <class name="refund.magcard"/>
     <class name="refund.voucher"/>
+    <class name="refund.debt"/>
     <class name="sales.ChangeTaxOptions"/>
     <class name="sales.DeleteLines"/>
     <class name="sales.DeleteTicket"/> 

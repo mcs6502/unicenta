@@ -1,6 +1,6 @@
-Project: uniCenta oPOS v4.6.2
+Project: uniCenta oPOS v4.6.3
 Topic:	README installer
-Date: 	24 March 2019
+Date: 	21 December 2020
 
 Acknowledgement: The content of the language/Locale files are 
 compiled from the efforts of uniCenta and uniCenta oPOS Community 
@@ -15,7 +15,7 @@ who requests them
 
 Please refer to Locales Guide for installation details.
 
-uniCenta oPOS v4.6.2 is delivered with support for 15 languages.
+uniCenta oPOS v4.6.3 is delivered with support for 15 languages.
 
 Full translations provided by uniCenta include:
 English UK - the default language set.

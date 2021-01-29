@@ -34,8 +34,7 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.JFrame;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 /**
  *
@@ -422,6 +421,24 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
         }
     }
 
+    public class JPaymentDebtRefundCreator implements JPaymentCreator {
+        @Override
+        public JPaymentInterface createJPayment() {
+            return new JPaymentDebt(JPaymentSelect.this);
+        }
+        @Override
+        public String getKey() {
+            return "refund.debt";
+        }
+        @Override
+        public String getLabelKey() {
+            return "tab.debt";
+        }
+        @Override
+        public String getIconKey() {
+            return "/com/openbravo/images/customer.png";
+        }
+    }
     public class JPaymentBankCreator implements JPaymentCreator {
         @Override
         public JPaymentInterface createJPayment() {
@@ -701,9 +718,8 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
 
     private void m_jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_jButtonAddActionPerformed
 
-        PaymentInfo returnPayment = (
-                (JPaymentInterface) m_jTabPayment.getSelectedComponent())
-                .executePayment();
+        JPaymentInterface selectedComponent = (JPaymentInterface) m_jTabPayment.getSelectedComponent();
+        PaymentInfo returnPayment = selectedComponent.executePayment();
         if (returnPayment != null) {
             m_aPaymentInfo.add(returnPayment);
             printState();
@@ -731,9 +747,8 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
             @Override
             protected Object doInBackground() throws Exception {
                 m_jButtonOK.setEnabled(false);
-                setReturnPayment(
-                        ((JPaymentInterface) m_jTabPayment.getSelectedComponent())
-                                .executePayment());
+                PaymentInfo paymentInfo = ((JPaymentInterface) m_jTabPayment.getSelectedComponent()).executePayment();
+                setReturnPayment(paymentInfo);
                 return null;
             }
 

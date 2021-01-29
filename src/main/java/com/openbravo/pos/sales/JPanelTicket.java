@@ -666,8 +666,6 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
 
         if (iValue == null ? secret == null : iValue.equals(secret)) {
           pinOK = true;
-          JOptionPane.showMessageDialog(this, "Units changed from "
-                  + count + " to " + oCount);
           return pinOK;
 
         } else {

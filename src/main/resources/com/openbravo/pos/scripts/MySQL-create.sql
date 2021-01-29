@@ -1,3 +1,5 @@
+-- noinspection SqlDialectInspectionForFile
+
 --    uniCenta oPOS - Touch Friendly Point Of Sale
 --    Copyright © 2009-2020 uniCenta
 --    https://unicenta.com
@@ -435,7 +437,7 @@ CREATE TABLE `sharedtickets` (
 	`name` varchar(255) NOT NULL,
 	`content` mediumblob default NULL,
 	`appuser` varchar(255) default NULL,
-	`pickupid` int(11) NOT NULL default '0',
+	`pickupid` int NOT NULL default '0',
 	`locked` varchar(20) default NULL,
 	PRIMARY KEY  ( `id` )
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT = Compact;
@@ -919,6 +921,7 @@ INSERT INTO resources(id, name, restype, content) VALUES('71', 'script.Linedisco
 INSERT INTO resources(id, name, restype, content) VALUES('72', 'script.posapps', 0, $FILE{/com/openbravo/pos/templates/script.posapps.txt});
 INSERT INTO resources(id, name, restype, content) VALUES('73', 'script.SendOrder', 0, $FILE{/com/openbravo/pos/templates/script.SendOrder.txt});
 INSERT INTO resources(id, name, restype, content) VALUES('74', 'script.Totaldiscount', 0, $FILE{/com/openbravo/pos/templates/script.Totaldiscount.txt});
+INSERT INTO resources(id, name, restype, content) VALUES('75', 'script.multibuy', 0, $FILE{/com/openbravo/pos/templates/script.multibuy.txt});
 
 -- ADD CATEGORIES
 INSERT INTO categories(id, name) VALUES ('000', 'Category Standard');

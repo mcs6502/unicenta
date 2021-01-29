@@ -84,6 +84,9 @@ INSERT INTO roles(id, name, permissions) VALUES('2', 'Employee role', $FILE{/com
 -- ALTER TABLE `places` ADD COLUMN `guests` INT(11) DEFAULT 0 AFTER `width`;
 -- ALTER TABLE `places` ADD COLUMN `occupied` datetime DEFAULT NULL AFTER `guests`;
 
+-- https://unicenta.atlassian.net/browse/UOCL-202
+ALTER TABLE sharedtickets modify pickupid int;
+
 -- Switch ON table foreign key relationships
 set foreign_key_checks = 1;
 

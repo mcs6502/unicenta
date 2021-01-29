@@ -107,10 +107,18 @@ public class JPaymentVoucher extends javax.swing.JPanel implements JPaymentInter
     } catch (BasicException ex) {
       log.error(ex.getMessage());
     }
+    removeAlreadyAddedVoucher(this.m_sVoucher1, a);
     m_VoucherModel = new ComboBoxValModel(a);
     m_jVoucher.setModel(m_VoucherModel);
 
     printState();
+    this.m_sVoucher1 = null;
+  }
+
+  private void removeAlreadyAddedVoucher(String existingVoucherNumber, List<VoucherInfo> vouchers) {
+    if (vouchers != null && existingVoucherNumber != null) {
+      vouchers.removeIf(voucherInfo -> voucherInfo.getVoucherNumber().equals(existingVoucherNumber));
+    }
   }
 
   /**
