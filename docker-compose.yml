@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+   opos_db:
+     image: mysql:5.7
+     restart: always
+     volumes:
+       - db_data:/var/lib/mysql
+     environment:
+       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+       MYSQL_DATABASE: unicenta
+       MYSQL_USER: unicenta
+       MYSQL_PASSWORD_FILE: /run/secrets/db_password
+     secrets:
+       - db_root_password
+       - db_password
+     ports:
+       - '3306:3306'
+
+secrets:
+   db_password:
+     file: .db_password.txt
+   db_root_password:
+     file: .db_root_password.txt
+
+volumes:
+    db_data:

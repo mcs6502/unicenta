@@ -30,6 +30,21 @@
       <version>1.2.2</version>
     </dependency>
     <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-base</artifactId>
+      <version>15.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-swing</artifactId>
+      <version>15.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-web</artifactId>
+      <version>15.0.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring</artifactId>
       <version>2.5</version>
@@ -504,8 +519,8 @@
   </build>
   <repositories>
     <repository>
-      <id>spring-repo</id>
-      <url>https://repo.spring.io/plugins-release/</url>
+      <id>oracle-releases</id>
+      <url>http://download.oracle.com/maven/</url>
     </repository>
     <repository>
       <id>unicenta-repo</id>
